@@ -12,6 +12,9 @@ Bem-vindo ao Projeto FROGGER, uma implementação clássica do famoso jogo Frogg
    - Utilize as teclas `A` para mover o sapo para a esquerda.
    - Utilize as teclas `S` para mover o sapo para baixo.
    - Utilize as teclas `D` para mover o sapo para a direita.
+   - Utilize as teclas `R` para resetar o jogo caso ganha ou perca. 
+   - Utilize as teclas `P` para finalizar o jogo caso ganha ou perca. 
+
 
 3. **Perigos:**
    - Colisão com carros: Se o sapo colidir com um carro, ele perderá uma vida.

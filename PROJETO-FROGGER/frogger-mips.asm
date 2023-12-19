@@ -6,7 +6,7 @@
 #########################################################################################################
 #	UNIT WIDTH IN PIXELS = 4	UNIT HEIGHT IN PIXELS = 4
 #	DISPLAY WIDTH IN PIXELS = 512	DISPLAY HEIGHT IN PIXELS = 512
-#	BASE ADDRESS FOR DISPLAY = 0X10040000 (HEAP)
+#	BASE ADDRESS FOR DISPLAY = 0X10010000 (HEAP)
 #
 #	
 ##########################################################################################################
@@ -387,9 +387,7 @@ j RSvolte
 SapoPulaParaCima:  
 jal DeleteSapo
 addi $5, $5, -7680
-add $4, $0, $5
-	addi $2, $0, 1
-	syscall
+
 j continua
 
 ResetarSapo: jal DeleteSapo
@@ -5513,9 +5511,10 @@ Vitoria:
 	lui $8, 0x1001
 	add $4, $0, $0
 
-	printV: beq $4,65536, fim
+	printV: beq $4,65536, boolreset
 		lw $11,196608($8)
 		sw $11, 0($8)
+		sw $11,196608($8)
 		add $8, $8, 4
 		addi $4, $4, 4
 	j printV
@@ -5538,14 +5537,64 @@ GameOver:
 	lui $8, 0x1001
 	add $4, $0, $0
 
-	printg: beq $4,65536, fim
+	printg: beq $4,65536, boolreset
 		lw $11, 131072($8)
 		sw $11, 0($8)
+		sw $11, 131072($8)
 		add $8, $8, 4
 		addi $4, $4, 4
 	j printg
 
 
+boolreset: 
 
+	loopw: beq $4, 1, fim
+		
+	lui $1 0xffff
+	lw $13, 0($1) # verifica se digitou
+
+	beq $13, $0, nd # se não digitou o sapo não se mexe
+	lw $14, 4($1)  # verifica a tecla que foi digitada
+	addi $15, $0, 'r' # verifica se ela é igual a w, se for o sapo pula para cima
+	beq $14, $15, Resetou
+	addi $15, $0, 'p' # verifica se ela é igual a w, se for o sapo pula para cima
+	beq $14, $15, fim
+	nd:
+	j loopw
+	
+Resetou:
+	add $1, $0, $0
+	add $2, $0, $0
+	add $3, $0, $0
+	add $4, $0, $0
+	add $5, $0, $0
+	add $6, $0, $0
+	add $7, $0, $0
+	add $8, $0, $0
+	add $9, $0, $0
+	add $10, $0, $0
+	add $11, $0, $0
+	add $12, $0, $0
+	add $13, $0, $0
+	add $14, $0, $0
+	add $15, $0, $0
+	add $16, $0, $0
+	add $17, $0, $0
+	add $18, $0, $0
+	add $19, $0, $0
+	add $20, $0, $0
+	add $21, $0, $0
+	add $22, $0, $0
+	add $23, $0, $0
+	add $24, $0, $0
+	add $25, $0, $0
+	add $26, $0, $0
+	add $27, $0, $0
+	add $28, $0, $0
+	add $29, $0, $0
+	add $30, $0, $0
+	add $31, $0, $0
+
+	j fimDesenho02
 
 
